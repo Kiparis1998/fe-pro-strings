@@ -4,7 +4,19 @@
  * @param {string} string
  * @returns {string}
  */
-export const replaceZAndVFromString = (string) => {};
+export const replaceZAndVFromString = (string) => {
+    let newSymbol = '';
+
+    for (let letter of string) {
+
+        if (letter.toLowerCase().includes('z')) { 
+            newSymbol = '*';
+            
+        } 
+    }    
+    
+    return string + newSymbol;
+};
 
 /**
  * Функция должна принять 3 аргумента и все строки. Мы передаем строку,
@@ -16,7 +28,14 @@ export const replaceZAndVFromString = (string) => {};
  * @param {string} newWord
  * @returns {string}
  */
-export const changeWord = (string, word, newWord) => {};
+export const changeWord = (string, word, newWord) => {
+    let newStr = '';
+
+    if (word) {
+       newStr = string.slice(string.indexOf(word))
+    }
+    return string;
+};
 
 /**
  * Должна вернуть строку(1 аргумент) на обрезанную по длине(2 аргумент, число)
@@ -24,7 +43,10 @@ export const changeWord = (string, word, newWord) => {};
  * @param {number} length
  * @returns {string}
  */
-export const truncate = (string, length) => {};
+export const truncate = (string, length) => {
+    string = string.toLowerCase().slice(0, length);
+    return string;
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -37,7 +59,17 @@ export const truncate = (string, length) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbols = (string, symbol) => {};
+export const quantityOfSymbols = (string, symbol) => {
+    let result = 0;
+
+    for (let letter of string) {
+        if (letter.toLowerCase().includes(symbol.toLowerCase())) {
+            result++;
+        }
+    }
+
+    return result;
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -54,4 +86,23 @@ export const quantityOfSymbols = (string, symbol) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbolsWithIndexOf = (string, symbol) => {};
+export const quantityOfSymbolsWithIndexOf = (string, symbol) => {
+    
+    let result = 0;
+    let position = 0;
+
+    while (true) {
+        let foundPos = string.toLowerCase().indexOf(symbol.toLowerCase(), position);
+
+        if (foundPos && foundPos !== -1) {
+            result++;
+            position++;
+
+        } else if (foundPos === -1) break;
+
+    }
+
+    return result;
+};
+
+
