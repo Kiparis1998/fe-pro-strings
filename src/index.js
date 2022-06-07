@@ -5,17 +5,17 @@
  * @returns {string}
  */
 export const replaceZAndVFromString = (string) => {
-    let newSymbol = '';
-
-    for (let letter of string) {
-
-        if (letter.toLowerCase().includes('z')) { 
-            newSymbol = '*';
-            
-        } 
-    }    
+    let result = '';
     
-    return string + newSymbol;
+    for (let letter of string) {
+        if (letter.toLowerCase().includes('z') || (letter.toLowerCase().includes('v'))) {
+            result = `${result}${'*'}`;
+        } else {
+            result = `${result}${letter}`;
+        }
+    }
+
+    return result;
 };
 
 /**
@@ -29,11 +29,16 @@ export const replaceZAndVFromString = (string) => {
  * @returns {string}
  */
 export const changeWord = (string, word, newWord) => {
-    let newStr = '';
+    let leftString = '';
+    let rightString = '';
 
-    if (word) {
-       newStr = string.slice(string.indexOf(word))
+    if (string.toLowerCase().includes(word.toLowerCase())) {  
+        leftString = string.toLowerCase().slice(0, 8);
+        leftString = `${leftString}${newWord}`;
+        rightString = string.toLowerCase().slice(-6);
+        string = `${leftString}${rightString}`;
     }
+
     return string;
 };
 
@@ -87,19 +92,18 @@ export const quantityOfSymbols = (string, symbol) => {
  * @returns {number}
  */
 export const quantityOfSymbolsWithIndexOf = (string, symbol) => {
-    
+
     let result = 0;
     let position = 0;
 
     while (true) {
-        let foundPos = string.toLowerCase().indexOf(symbol.toLowerCase(), position);
+        let foundPosition = string.toLowerCase().indexOf(symbol.toLowerCase(), position);
 
-        if (foundPos && foundPos !== -1) {
+        if (foundPosition !== -1) {
             result++;
-            position++;
+        } else if (foundPosition === -1) break;
 
-        } else if (foundPos === -1) break;
-
+        position = foundPosition + 1;
     }
 
     return result;
