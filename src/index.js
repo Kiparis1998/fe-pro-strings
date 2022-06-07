@@ -70,6 +70,8 @@ export const quantityOfSymbols = (string, symbol) => {
     for (let letter of string) {
         if (letter.toLowerCase().includes(symbol.toLowerCase())) {
             result++;
+        } else {
+            string = `${string}`;
         }
     }
 
