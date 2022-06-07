@@ -37,6 +37,8 @@ export const changeWord = (string, word, newWord) => {
         leftString = `${leftString}${newWord}`;
         rightString = string.toLowerCase().slice(-6);
         string = `${leftString}${rightString}`;
+    } else {
+        string = `${string}`;
     }
 
     return string;
@@ -70,8 +72,6 @@ export const quantityOfSymbols = (string, symbol) => {
     for (let letter of string) {
         if (letter.toLowerCase().includes(symbol.toLowerCase())) {
             result++;
-        } else {
-            string = `${string}`;
         }
     }
 
