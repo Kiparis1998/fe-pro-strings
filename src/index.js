@@ -33,8 +33,7 @@ export const changeWord = (string, word, newWord) => {
 
     while (true) {
         let lengthOfWord = word.length;
-        i = string.toLowerCase().indexOf(word, i);
-        
+        i = string.indexOf(word, i);
         if (i === -1) break;
         string = `${string.slice(0, i)}${newWord}${string.slice(i + lengthOfWord)}`;
         i += lengthOfWord;
