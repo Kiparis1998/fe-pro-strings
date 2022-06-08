@@ -29,16 +29,14 @@ export const replaceZAndVFromString = (string) => {
  * @returns {string}
  */
 export const changeWord = (string, word, newWord) => {
-    let leftString = '';
-    let rightString = '';
+    let i = 0;
 
-    if (string.toLowerCase().includes(word.toLowerCase())) {  
-        leftString = string.toLowerCase().slice(0, 8);
-        leftString = `${leftString}${newWord}`;
-        rightString = string.toLowerCase().slice(-6);
-        string = `${leftString}${rightString}`;
-    } else {
-        string = `${string}`;
+    while (true) {
+        let lengthOfWord = word.length;
+        i = string.toLowerCase().indexOf(word.toLowerCase(), i);
+        if (i === -1) break;
+        string = `${string.slice(0, i)}${newWord}${string.slice(i + lengthOfWord)}`;
+        i += lengthOfWord;
     }
 
     return string;
@@ -51,7 +49,7 @@ export const changeWord = (string, word, newWord) => {
  * @returns {string}
  */
 export const truncate = (string, length) => {
-    string = string.toLowerCase().slice(0, length);
+    string = string.slice(0, length);
     return string;
 };
 
