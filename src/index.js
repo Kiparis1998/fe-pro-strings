@@ -29,11 +29,12 @@ export const replaceZAndVFromString = (string) => {
  * @returns {string}
  */
 export const changeWord = (string, word, newWord) => {
-    let lengthOfWord = word.length;
     let i = 0;
 
     while (true) {
+        let lengthOfWord = word.length;
         i = string.toLowerCase().indexOf(word, i);
+        
         if (i === -1) break;
         string = `${string.slice(0, i)}${newWord}${string.slice(i + lengthOfWord)}`;
         i += lengthOfWord;
